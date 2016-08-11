@@ -1,0 +1,43 @@
+{
+  "name": "jsx-create-element",
+  "version": "0.0.1",
+  "description": "jsx to document.createElement",
+  "main": "index.js",
+  "scripts": {
+    "babel": "babel ./src --out-dir ./lib",
+    "jsx-to-dom": "babel ./test/test.jsx > ./test/result.js",
+    "create-index": "echo 'module.exports = require(\"./lib\").default;' > index.js",
+    "pretest": "npm run babel && npm run create-index && npm run jsx-to-dom",
+    "prerelease": "npm test",
+    "release": "standard-version --no-verify",
+    "test": "node test/index.js"
+  },
+  "author": "Gregor Adams <greg@pixelass.com> (http://pixelass.com)",
+  "keywords": [
+    "jsx",
+    "dom"
+  ],
+  "repository": "https://github.com/pixelass/jsx-create-element",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.13.2",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "colors": "^1.1.2",
+    "cz-conventional-changelog": "^1.1.7",
+    "git-scripts": "^0.2.1",
+    "standard-version": "^2.4.0"
+  },
+  "git": {
+    "scripts": {
+      "pre-commit": "npm test"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
