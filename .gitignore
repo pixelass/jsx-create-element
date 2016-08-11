@@ -42,4 +42,5 @@ docs
 ## generated
 lib
 index.js
+!src/index.js
 test/result.js
