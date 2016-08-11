@@ -42,3 +42,4 @@ docs
 ## generated
 lib
 index.js
+test/result.js

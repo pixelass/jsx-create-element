@@ -1,15 +1,15 @@
 'use strict';
 
-/** @jsx createElement */
-var foo = createElement(
+/** @jsx jsx.createElement */
+var foo = jsx.createElement(
   'div',
   { className: 'foobar' },
-  createElement(
+  jsx.createElement(
     'span',
     { className: 'foo' },
     'Foo'
   ),
-  createElement(
+  jsx.createElement(
     'span',
     { className: 'foo' },
     'bar'

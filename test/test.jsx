@@ -1,4 +1,4 @@
-/** @jsx createElement */
+/** @jsx jsx.createElement */
 const foo = (
   <div className='foobar'>
     <span className='foo'>Foo</span>

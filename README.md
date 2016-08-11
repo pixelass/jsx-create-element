@@ -6,6 +6,7 @@ npm install --save-dev jsx-create-element
 ```
 
 ```js
+/** @jsx jsx.createElement */
 import jsx from 'jsx-create-element'
 
 const className = 'foobar'
