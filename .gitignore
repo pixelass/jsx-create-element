@@ -43,6 +43,6 @@ docs
 lib
 index.js
 dist/**/*.css
-!src/index.js
+!*/**/index.js
 test/out/**/*
 !test/**/*expected*.*

@@ -11,7 +11,7 @@
     "pretest": "node build.js && npm run create-index && npm run babel-test && npm run babel && npm run build-test",
     "prerelease": "npm test",
     "release": "standard-version --no-verify",
-    "test": "node test/test.js"
+    "test": "node test"
   },
   "author": "Gregor Adams <greg@pixelass.com> (http://pixelass.com)",
   "keywords": [
