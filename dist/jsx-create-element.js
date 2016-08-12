@@ -1,6 +1,197 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
+var _ = require('.');
+
+var _2 = _interopRequireDefault(_);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+window.jsx = _2.default;
+
+},{".":4}],2:[function(require,module,exports){
+'use strict';
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
+
+var _globalAttributes = require('../maps/global-attributes');
+
+var _globalAttributes2 = _interopRequireDefault(_globalAttributes);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var getAttrs = function getAttrs(tag) {
+  var object = (typeof tag === 'undefined' ? 'undefined' : _typeof(tag)) === 'object';
+  // define local attributes and extend the global attributes
+  var localAttrs = object ? tag['attributes'] || {} : {};
+  return Object.assign({}, _globalAttributes2.default, localAttrs);
+};
+
+exports.default = getAttrs;
+
+},{"../maps/global-attributes":7}],3:[function(require,module,exports){
+'use strict';
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
+
+var getNode = function getNode(content) {
+  if ((typeof content === 'undefined' ? 'undefined' : _typeof(content)) === 'object') {
+    return content;
+  } else if (typeof content === 'string') {
+    return document.createTextNode(content);
+  } else {
+    throw new Error('Expected "object" or "string" but received "' + (typeof content === 'undefined' ? 'undefined' : _typeof(content)) + '"');
+  }
+};
+
+exports.default = getNode;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
+
+var _htmlTags = require('./maps/html-tags');
+
+var _htmlTags2 = _interopRequireDefault(_htmlTags);
+
+var _eventHandlers = require('./maps/event-handlers');
+
+var _eventHandlers2 = _interopRequireDefault(_eventHandlers);
+
+var _style = require('./transformers/style');
+
+var _style2 = _interopRequireDefault(_style);
+
+var _node = require('./getters/node');
+
+var _node2 = _interopRequireDefault(_node);
+
+var _attrs = require('./getters/attrs');
+
+var _attrs2 = _interopRequireDefault(_attrs);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+/**
+ * render content inside an element
+ * @param  {DOMNode} content - HTML content to render
+ * @param  {DOMNode} target - target element
+ */
+var render = function render(content, target) {
+  // append content to target
+  target.appendChild(content);
+};
+
+/**
+ * create an element and assign attributes and handlers
+ * also appends children
+ * @param  {String} tagName - defines which tagType to render
+ * @param  {Object} [props] - a list of properties containing attributes and eventlisteners
+ * @param  {...[DOMNode]} children - a collection of children to append
+ * @return {DOMNode} returns an HTML element
+ */
+var createElement = function createElement(tagName) {
+  for (var _len = arguments.length, children = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    children[_key - 2] = arguments[_key];
+  }
+
+  var properties = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+  // make sure props is an object
+  var props = properties || {};
+
+  if (!(tagName in _htmlTags2.default)) {
+    return;
+  }
+  // get the tagname
+  var tag = _htmlTags2.default[tagName];
+  // tag could be an object
+  var object = (typeof tag === 'undefined' ? 'undefined' : _typeof(tag)) === 'object';
+  var tagType = object ? tag.name : tag;
+
+  if (!tagType) {
+    return;
+  }
+
+  // create the element and get attributes
+  var el = document.createElement(tagType);
+  var attrs = (0, _attrs2.default)(tag);
+
+  // loop through all props and assign attributes and eventlisteners
+  Object.keys(props).forEach(function (prop) {
+    if (prop in attrs) {
+      el.setAttribute(attrs[prop], props[prop]);
+    } else if (prop in _eventHandlers2.default) {
+      el.addEventListener(_eventHandlers2.default[prop], props[prop]);
+    }
+  });
+
+  // if props contains a style object
+  // set styles on element
+  if ('style' in props) {
+    (function () {
+      var styles = props.style;
+      Object.keys(styles).forEach(function (prop) {
+        var value = styles[prop];
+        el.style[props] = (0, _style2.default)(prop, value);
+      });
+    })();
+  }
+
+  // loop through children and append.
+  children.forEach(function (child) {
+    var childNode = (0, _node2.default)(child);
+    el.appendChild(childNode);
+  });
+
+  return el;
+};
+
+exports.default = {
+  render: render,
+  createElement: createElement
+};
+
+},{"./getters/attrs":2,"./getters/node":3,"./maps/event-handlers":6,"./maps/html-tags":8,"./transformers/style":9}],5:[function(require,module,exports){
+'use strict';
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -64,20 +255,7 @@ exports.default = {
   }
 };
 
-},{}],2:[function(require,module,exports){
-'use strict';
-
-var _ = require('.');
-
-var _2 = _interopRequireDefault(_);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-window.jsx = _2.default;
-
-},{".":6}],3:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -108,7 +286,7 @@ exports.default = (_onClick$onFocus$onBl = {
   onMouseUp: 'mouseup'
 }, _defineProperty(_onClick$onFocus$onBl, 'onMouseDown', 'mousedown'), _defineProperty(_onClick$onFocus$onBl, 'onMouseMove', 'mousemove'), _defineProperty(_onClick$onFocus$onBl, 'onMouseEnter', 'mouseenter'), _defineProperty(_onClick$onFocus$onBl, 'onMouseOver', 'mouseover'), _defineProperty(_onClick$onFocus$onBl, 'onMouseOut', 'mouseout'), _defineProperty(_onClick$onFocus$onBl, 'onMouseLeave', 'mouseleave'), _defineProperty(_onClick$onFocus$onBl, 'onTouchStart', 'touchstart'), _defineProperty(_onClick$onFocus$onBl, 'onTouchEnd', 'touchend'), _defineProperty(_onClick$onFocus$onBl, 'onTouchCancel', 'touchcancel'), _defineProperty(_onClick$onFocus$onBl, 'onContextMenu', 'Ccntextmenu'), _defineProperty(_onClick$onFocus$onBl, 'onDoubleClick', 'dblclick'), _defineProperty(_onClick$onFocus$onBl, 'onDrag', 'drag'), _defineProperty(_onClick$onFocus$onBl, 'onDragEnd', 'dragend'), _defineProperty(_onClick$onFocus$onBl, 'onDragEnter', 'dragenter'), _defineProperty(_onClick$onFocus$onBl, 'onDragExit', 'dragexit'), _defineProperty(_onClick$onFocus$onBl, 'onDragLeave', 'dragleave'), _defineProperty(_onClick$onFocus$onBl, 'onDragOver', 'dragover'), _defineProperty(_onClick$onFocus$onBl, 'onDragStart', 'Dragstart'), _defineProperty(_onClick$onFocus$onBl, 'onDrop', 'drop'), _defineProperty(_onClick$onFocus$onBl, 'onLoad', 'load'), _defineProperty(_onClick$onFocus$onBl, 'onCopy', 'copy'), _defineProperty(_onClick$onFocus$onBl, 'onCut', 'cut'), _defineProperty(_onClick$onFocus$onBl, 'onPaste', 'paste'), _defineProperty(_onClick$onFocus$onBl, 'onCompositionEnd', 'compositionend'), _defineProperty(_onClick$onFocus$onBl, 'onCompositionStart', 'compositionstart'), _defineProperty(_onClick$onFocus$onBl, 'onCompositionUpdate', 'compositionupdate'), _defineProperty(_onClick$onFocus$onBl, 'onKeyDown', 'keydown'), _defineProperty(_onClick$onFocus$onBl, 'onKeyPress', 'keypress'), _defineProperty(_onClick$onFocus$onBl, 'onKeyUp', 'keyup'), _defineProperty(_onClick$onFocus$onBl, 'onAbort', 'Abort'), _defineProperty(_onClick$onFocus$onBl, 'onCanPlay', 'canplay'), _defineProperty(_onClick$onFocus$onBl, 'onCanPlayThrough', 'canplaythrough'), _defineProperty(_onClick$onFocus$onBl, 'onDurationChange', 'durationchange'), _defineProperty(_onClick$onFocus$onBl, 'onEmptied', 'emptied'), _defineProperty(_onClick$onFocus$onBl, 'onEncrypted', 'encrypted '), _defineProperty(_onClick$onFocus$onBl, 'onEnded', 'ended'), _defineProperty(_onClick$onFocus$onBl, 'onError', 'error'), _defineProperty(_onClick$onFocus$onBl, 'onLoadedData', 'loadeddata'), _defineProperty(_onClick$onFocus$onBl, 'onLoadedMetadata', 'loadedmetadata'), _defineProperty(_onClick$onFocus$onBl, 'onLoadStart', 'Loadstart'), _defineProperty(_onClick$onFocus$onBl, 'onPause', 'pause'), _defineProperty(_onClick$onFocus$onBl, 'onPlay', 'play '), _defineProperty(_onClick$onFocus$onBl, 'onPlaying', 'playing'), _defineProperty(_onClick$onFocus$onBl, 'onProgress', 'progress'), _defineProperty(_onClick$onFocus$onBl, 'onRateChange', 'ratechange'), _defineProperty(_onClick$onFocus$onBl, 'onSeeked', 'seeked'), _defineProperty(_onClick$onFocus$onBl, 'onSeeking', 'seeking'), _defineProperty(_onClick$onFocus$onBl, 'onStalled', 'stalled'), _defineProperty(_onClick$onFocus$onBl, 'onSuspend', 'suspend '), _defineProperty(_onClick$onFocus$onBl, 'onTimeUpdate', 'timeupdate'), _defineProperty(_onClick$onFocus$onBl, 'onVolumeChange', 'volumechange'), _defineProperty(_onClick$onFocus$onBl, 'onWaiting', 'waiting'), _defineProperty(_onClick$onFocus$onBl, 'onAnimationStart', 'animationstart'), _defineProperty(_onClick$onFocus$onBl, 'onAnimationEnd', 'animationend'), _defineProperty(_onClick$onFocus$onBl, 'onAnimationIteration', 'animationiteration'), _defineProperty(_onClick$onFocus$onBl, 'onTransitionEnd', 'transitionend'), _onClick$onFocus$onBl);
 
-},{}],4:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -136,7 +314,7 @@ exports.default = {
   translate: 'translate'
 };
 
-},{}],5:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -503,7 +681,7 @@ exports.default = {
 
 };
 
-},{}],6:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -518,19 +696,7 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
   return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
 };
 
-var _htmlTags = require('./html-tags');
-
-var _htmlTags2 = _interopRequireDefault(_htmlTags);
-
-var _globalAttributes = require('./global-attributes');
-
-var _globalAttributes2 = _interopRequireDefault(_globalAttributes);
-
-var _eventHandlers = require('./event-handlers');
-
-var _eventHandlers2 = _interopRequireDefault(_eventHandlers);
-
-var _cssProperties = require('./css-properties');
+var _cssProperties = require('../maps/css-properties');
 
 var _cssProperties2 = _interopRequireDefault(_cssProperties);
 
@@ -538,103 +704,22 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-/**
- * render content inside an element
- * @param  {DOMNode} content - HTML content to render
- * @param  {DOMNode} target - target element
- */
-var render = function render(content, target) {
-  // append content to target
-  target.appendChild(content);
-};
-
-/**
- * create an element and assign attributes and handlers
- * also appends childNodes
- * @param  {String} tagName - defines which tagType to render
- * @param  {Object} [props] - a list of properties containing attributes and eventlisteners
- * @param  {...[DOMNode]} childNodes - a collection of childNodes to append
- * @return {DOMNode} returns an HTML element
- */
-var createElement = function createElement(tagName) {
-  for (var _len = arguments.length, childNodes = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    childNodes[_key - 2] = arguments[_key];
-  }
-
-  var properties = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-  // make sure props is an object
-  var props = properties || {};
-
-  if (!(tagName in _htmlTags2.default)) {
-    return;
-  }
-  // get the tagname
-  var tag = _htmlTags2.default[tagName];
-  // tag could be an object
-  // use a flag to check when needed
-  var object = (typeof tag === 'undefined' ? 'undefined' : _typeof(tag)) === 'object';
-  // define local attributes and extend the global attributes
-  var localAttrs = object ? tag.attributes || {} : {};
-  var attrs = Object.assign({}, _globalAttributes2.default, localAttrs);
-  var tagType = object ? tag.name : tag;
-
-  // create the element
-  var el = document.createElement(tagType);
-
-  // loop through all props and assign attributes and eventlisteners
-  Object.keys(props).forEach(function (prop) {
-    if (prop in attrs) {
-      el.setAttribute(attrs[prop], props[prop]);
-    } else if (prop in _eventHandlers2.default) {
-      el.addEventListener(_eventHandlers2.default[prop], props[prop]);
-    }
-  });
-
-  // if props contains a style object
-  // set styles on element
-  if ('style' in props) {
-    (function () {
-      var styles = props.style;
-
-      Object.keys(styles).forEach(function (prop) {
-        var value = styles[prop];
-        // make numbers default to px
-        if (typeof value === 'number') {
-          var cssProp = _cssProperties2.default[prop];
-          if (cssProp && 'unit' in cssProp) {
-            el.style[prop] = '' + value + cssProp.unit;
-          } else {
-            el.style[prop] = value;
-          }
-        } else if (typeof value === 'string') {
-          el.style[prop] = value;
-        } else {
-          throw new Error('Expected "number" or "string" but received "' + (typeof value === 'undefined' ? 'undefined' : _typeof(value)) + '"');
-        }
-      });
-    })();
-  }
-
-  // loop through childNodes and append.
-  // if string create a textNode
-  childNodes.forEach(function (childNode) {
-
-    if ((typeof childNode === 'undefined' ? 'undefined' : _typeof(childNode)) === 'object') {
-      el.appendChild(childNode);
-    } else if (typeof childNode === 'string') {
-      el.appendChild(document.createTextNode(childNode));
+var transformStyle = function transformStyle(prop, value) {
+  // make numbers default to px
+  if (typeof value === 'number') {
+    var cssProp = _cssProperties2.default[prop];
+    if (cssProp && 'unit' in cssProp) {
+      return '' + value + cssProp.unit;
     } else {
-      throw new Error('Expected "object" or "string" but received "' + (typeof value === 'undefined' ? 'undefined' : _typeof(value)) + '"');
+      return value;
     }
-  });
-
-  return el;
+  } else if (typeof value === 'string') {
+    return value;
+  } else {
+    throw new Error('Expected "number" or "string" but received "' + (typeof value === 'undefined' ? 'undefined' : _typeof(value)) + '"');
+  }
 };
 
-exports.default = {
-  render: render,
-  createElement: createElement
-};
+exports.default = transformStyle;
 
-},{"./css-properties":1,"./event-handlers":3,"./global-attributes":4,"./html-tags":5}]},{},[2]);
+},{"../maps/css-properties":5}]},{},[1]);
