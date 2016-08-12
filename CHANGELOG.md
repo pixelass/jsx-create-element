@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.7"></a>
+## [0.0.7](https://github.com/pixelass/jsx-create-element/compare/v0.0.6...v0.0.7) (2016-08-12)
+
+
+### Bug Fixes
+
+* **css:** added more css props ([7aa6d7c](https://github.com/pixelass/jsx-create-element/commit/7aa6d7c))
+
+
+
 <a name="0.0.6"></a>
 ## [0.0.6](https://github.com/pixelass/jsx-create-element/compare/v0.0.5...v0.0.6) (2016-08-12)
 
