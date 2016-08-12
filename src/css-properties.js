@@ -17,18 +17,6 @@ export default {
   borderRadius: {
     unit: 'px'
   },
-  borderTopRadius: {
-    unit: 'px'
-  },
-  borderRightRadius: {
-    unit: 'px'
-  },
-  borderBottomRadius: {
-    unit: 'px'
-  },
-  borderLeftRadius: {
-    unit: 'px'
-  },
   borderTopLeftRadius: {
     unit: 'px'
   },
@@ -42,6 +30,18 @@ export default {
     unit: 'px'
   },
   borderWidth: {
+    unit: 'px'
+  },
+  borderTopWidth: {
+    unit: 'px'
+  },
+  borderRightWidth: {
+    unit: 'px'
+  },
+  borderBottomWidth: {
+    unit: 'px'
+  },
+  borderLeftWidth: {
     unit: 'px'
   },
   top: {
