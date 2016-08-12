@@ -31,6 +31,19 @@ exports.default = {
 },{}],2:[function(require,module,exports){
 'use strict';
 
+var _ = require('.');
+
+var _2 = _interopRequireDefault(_);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+window.jsx = _2.default;
+
+},{".":6}],3:[function(require,module,exports){
+'use strict';
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -59,7 +72,7 @@ exports.default = (_onClick$onFocus$onBl = {
   onMouseUp: 'mouseup'
 }, _defineProperty(_onClick$onFocus$onBl, 'onMouseDown', 'mousedown'), _defineProperty(_onClick$onFocus$onBl, 'onMouseMove', 'mousemove'), _defineProperty(_onClick$onFocus$onBl, 'onMouseEnter', 'mouseenter'), _defineProperty(_onClick$onFocus$onBl, 'onMouseOver', 'mouseover'), _defineProperty(_onClick$onFocus$onBl, 'onMouseOut', 'mouseout'), _defineProperty(_onClick$onFocus$onBl, 'onMouseLeave', 'mouseleave'), _defineProperty(_onClick$onFocus$onBl, 'onTouchStart', 'touchstart'), _defineProperty(_onClick$onFocus$onBl, 'onTouchEnd', 'touchend'), _defineProperty(_onClick$onFocus$onBl, 'onTouchCancel', 'touchcancel'), _defineProperty(_onClick$onFocus$onBl, 'onContextMenu', 'Ccntextmenu'), _defineProperty(_onClick$onFocus$onBl, 'onDoubleClick', 'dblclick'), _defineProperty(_onClick$onFocus$onBl, 'onDrag', 'drag'), _defineProperty(_onClick$onFocus$onBl, 'onDragEnd', 'dragend'), _defineProperty(_onClick$onFocus$onBl, 'onDragEnter', 'dragenter'), _defineProperty(_onClick$onFocus$onBl, 'onDragExit', 'dragexit'), _defineProperty(_onClick$onFocus$onBl, 'onDragLeave', 'dragleave'), _defineProperty(_onClick$onFocus$onBl, 'onDragOver', 'dragover'), _defineProperty(_onClick$onFocus$onBl, 'onDragStart', 'Dragstart'), _defineProperty(_onClick$onFocus$onBl, 'onDrop', 'drop'), _defineProperty(_onClick$onFocus$onBl, 'onLoad', 'load'), _defineProperty(_onClick$onFocus$onBl, 'onCopy', 'copy'), _defineProperty(_onClick$onFocus$onBl, 'onCut', 'cut'), _defineProperty(_onClick$onFocus$onBl, 'onPaste', 'paste'), _defineProperty(_onClick$onFocus$onBl, 'onCompositionEnd', 'compositionend'), _defineProperty(_onClick$onFocus$onBl, 'onCompositionStart', 'compositionstart'), _defineProperty(_onClick$onFocus$onBl, 'onCompositionUpdate', 'compositionupdate'), _defineProperty(_onClick$onFocus$onBl, 'onKeyDown', 'keydown'), _defineProperty(_onClick$onFocus$onBl, 'onKeyPress', 'keypress'), _defineProperty(_onClick$onFocus$onBl, 'onKeyUp', 'keyup'), _defineProperty(_onClick$onFocus$onBl, 'onAbort', 'Abort'), _defineProperty(_onClick$onFocus$onBl, 'onCanPlay', 'canplay'), _defineProperty(_onClick$onFocus$onBl, 'onCanPlayThrough', 'canplaythrough'), _defineProperty(_onClick$onFocus$onBl, 'onDurationChange', 'durationchange'), _defineProperty(_onClick$onFocus$onBl, 'onEmptied', 'emptied'), _defineProperty(_onClick$onFocus$onBl, 'onEncrypted', 'encrypted '), _defineProperty(_onClick$onFocus$onBl, 'onEnded', 'ended'), _defineProperty(_onClick$onFocus$onBl, 'onError', 'error'), _defineProperty(_onClick$onFocus$onBl, 'onLoadedData', 'loadeddata'), _defineProperty(_onClick$onFocus$onBl, 'onLoadedMetadata', 'loadedmetadata'), _defineProperty(_onClick$onFocus$onBl, 'onLoadStart', 'Loadstart'), _defineProperty(_onClick$onFocus$onBl, 'onPause', 'pause'), _defineProperty(_onClick$onFocus$onBl, 'onPlay', 'play '), _defineProperty(_onClick$onFocus$onBl, 'onPlaying', 'playing'), _defineProperty(_onClick$onFocus$onBl, 'onProgress', 'progress'), _defineProperty(_onClick$onFocus$onBl, 'onRateChange', 'ratechange'), _defineProperty(_onClick$onFocus$onBl, 'onSeeked', 'seeked'), _defineProperty(_onClick$onFocus$onBl, 'onSeeking', 'seeking'), _defineProperty(_onClick$onFocus$onBl, 'onStalled', 'stalled'), _defineProperty(_onClick$onFocus$onBl, 'onSuspend', 'suspend '), _defineProperty(_onClick$onFocus$onBl, 'onTimeUpdate', 'timeupdate'), _defineProperty(_onClick$onFocus$onBl, 'onVolumeChange', 'volumechange'), _defineProperty(_onClick$onFocus$onBl, 'onWaiting', 'waiting'), _defineProperty(_onClick$onFocus$onBl, 'onAnimationStart', 'animationstart'), _defineProperty(_onClick$onFocus$onBl, 'onAnimationEnd', 'animationend'), _defineProperty(_onClick$onFocus$onBl, 'onAnimationIteration', 'animationiteration'), _defineProperty(_onClick$onFocus$onBl, 'onTransitionEnd', 'transitionend'), _onClick$onFocus$onBl);
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -87,7 +100,7 @@ exports.default = {
   translate: 'translate'
 };
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -454,7 +467,7 @@ exports.default = {
 
 };
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -588,4 +601,4 @@ exports.default = {
   createElement: createElement
 };
 
-},{"./css-properties":1,"./event-handlers":2,"./global-attributes":3,"./html-tags":4}]},{},[5]);
+},{"./css-properties":1,"./event-handlers":3,"./global-attributes":4,"./html-tags":5}]},{},[2]);

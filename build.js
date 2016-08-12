@@ -8,7 +8,7 @@ const cssmodulesify = require('css-modulesify')
 const log = new Log('info')
 
 const fileMap = {
-  'index.js': 'jsx-create-element'
+  'dist.js': 'jsx-create-element'
 }
 
 const files = Object.keys(fileMap)

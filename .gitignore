@@ -42,6 +42,7 @@ docs
 ## generated
 lib
 index.js
+dist/**/*.css
 !src/index.js
 test/out/**/*
 !test/**/*expected*.*
