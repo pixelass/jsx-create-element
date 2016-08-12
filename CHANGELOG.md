@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/pixelass/jsx-create-element/compare/v0.0.9...v0.1.0) (2016-08-12)
+
+
+### Features
+
+* **components:** allow components ([dc69210](https://github.com/pixelass/jsx-create-element/commit/dc69210)), closes [#2](https://github.com/pixelass/jsx-create-element/issues/2)
+
+
+
 <a name="0.0.9"></a>
 ## [0.0.9](https://github.com/pixelass/jsx-create-element/compare/v0.0.8...v0.0.9) (2016-08-12)
 
