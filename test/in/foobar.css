@@ -1,0 +1,13 @@
+.color {
+  color: white;
+}
+
+.foo {
+  background: red;
+  composes: color;
+}
+
+.bar {
+  background: green;
+  composes: color;
+}

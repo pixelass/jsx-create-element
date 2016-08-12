@@ -1,6 +1,7 @@
 import HTML_TAGS from './html-tags'
 import GLOBAL_ATTRIBUTES from './global-attributes'
 import EVENT_HANDLERS from './event-handlers'
+import CSS_PROPERTIES from './css-properties'
 
 /**
  * render content inside an element
@@ -17,7 +18,7 @@ const render = (content, target) => {
  * also appends childNodes
  * @param  {String} tagName - defines which tagType to render
  * @param  {Object} [props] - a list of properties containing attributes and eventlisteners
- * @param  {...[type]} childNodes - a collection of childNodes to append
+ * @param  {...[DOMNode]} childNodes - a collection of childNodes to append
  * @return {DOMNode} returns an HTML element
  */
 const createElement = (tagName, properties = {}, ...childNodes) => {
@@ -58,7 +59,12 @@ const createElement = (tagName, properties = {}, ...childNodes) => {
       const value = styles[prop]
       // make numbers default to px
       if (typeof value === 'number') {
-        el.style[prop] = `${value}px`
+        const cssProp = CSS_PROPERTIES[prop]
+        if (cssProp && 'unit' in cssProp) {
+          el.style[prop] = `${value}${cssProp.unit}`
+        } else {
+          el.style[prop] = value
+        }
       } else if (typeof value === 'string') {
         el.style[prop] = value
       } else {

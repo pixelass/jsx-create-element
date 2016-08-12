@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "babel": "babel ./src --out-dir ./lib",
-    "jsx-to-dom": "babel ./test/test.jsx > ./test/result.js",
+    "babel-test": "babel ./test/in/test.jsx > ./test/out/result.js",
+    "build-test": "node test/build",
     "create-index": "echo 'module.exports = require(\"./lib\").default;' > index.js",
-    "pretest": "npm run babel && npm run create-index && npm run jsx-to-dom",
+    "pretest": "node build.js && npm run create-index && npm run babel-test && npm run build-test && npm run babel",
     "prerelease": "npm test",
     "release": "standard-version --no-verify",
-    "test": "node test/index.js"
+    "test": "node test/test.js"
   },
   "author": "Gregor Adams <greg@pixelass.com> (http://pixelass.com)",
   "keywords": [
@@ -25,10 +26,16 @@
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
     "colors": "^1.1.2",
+    "css-modulesify": "^0.25.1",
     "cz-conventional-changelog": "^1.1.7",
+    "errorify": "^0.3.1",
     "git-scripts": "^0.2.1",
-    "standard-version": "^2.4.0"
+    "log": "^1.4.0",
+    "standard-version": "^2.4.0",
+    "watchify": "^3.7.0"
   },
   "git": {
     "scripts": {
@@ -39,5 +46,20 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      [
+        "babelify",
+        {
+          "presets": [
+            "react",
+            "es2015",
+            "stage-0"
+          ]
+        }
+      ]
+    ]
   }
 }

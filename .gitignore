@@ -43,4 +43,5 @@ docs
 lib
 index.js
 !src/index.js
-test/result.js
+test/out/**/*
+!test/**/*expected*.*
