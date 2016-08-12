@@ -46,7 +46,7 @@ const createElement = (tagName, properties = {}, ...children) => {
   }
 
   if (!(tagName in HTML_TAGS)) {
-    return null
+    throw new Error(`${tagName} is not a valid tagName`)
   }
 
   // get the tag.name
