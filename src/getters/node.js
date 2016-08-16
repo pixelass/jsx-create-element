@@ -1,10 +1,11 @@
 const getNode = (content) => {
-  if (typeof content === 'object') {
-    return content
-  } else if (typeof content === 'string' || typeof content === 'number') {
-    return document.createTextNode(content)
+  const type = typeof content
+  if (type === 'object') {
+    return Object.assign(content,{nodeType: 'Element'})
+  } else if (type === 'string' || type === 'number') {
+    return {nodeType: 'TextNode', content}
   } else {
-    throw new Error(`Expected "object", "numer" or "string" but received "${typeof content}"`)
+    return
   }
 }
 

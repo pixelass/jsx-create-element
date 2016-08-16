@@ -3,6 +3,7 @@ const Log = require('log')
 const browserify = require('browserify')
 const babelify = require('babelify')
 const errorify = require('errorify')
+const uglifyify = require('uglifyify')
 const cssmodulesify = require('css-modulesify')
 
 const log = new Log('info')
@@ -20,13 +21,19 @@ files.forEach(file => {
     entries: [inFile],
     plugin: [errorify]
   })
+  b.transform({
+    global: true
+  }, 'uglifyify')
+
   b.plugin(cssmodulesify, {
     rootDir: __dirname,
     output: `${outFile}.css`
   })
+
   function bundle() {
     b.bundle().pipe(fs.createWriteStream(`${outFile}.js`))
   }
+
   b.on('log',  message => log.info(message))
   b.on('error',  message => log.error(message))
   bundle()

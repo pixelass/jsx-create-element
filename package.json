@@ -6,7 +6,7 @@
   "scripts": {
     "babel": "babel ./src --out-dir ./lib",
     "babel-test": "babel ./test/in/test.jsx > ./test/out/result.js",
-    "build-test": "node test/build",
+    "build-test": "node ./test/build.js && node ./test/ugly.js",
     "create-index": "echo 'module.exports = require(\"./lib\").default;' > index.js",
     "pretest": "node build; npm run build-test; npm run babel-test",
     "prerelease": "npm test",
@@ -35,6 +35,8 @@
     "git-scripts": "^0.2.1",
     "log": "^1.4.0",
     "standard-version": "^2.4.0",
+    "uglify-js": "^2.7.1",
+    "uglifyify": "^3.0.2",
     "watchify": "^3.7.0"
   },
   "git": {

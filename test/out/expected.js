@@ -19,48 +19,174 @@ var createElement = _src2.default.createElement;
 var render = _src2.default.render;
 
 
+var toggle = function toggle(c) {
+  if (c % 2 < 1) {
+    return createElement(
+      'fieldset',
+      null,
+      createElement(
+        'label',
+        null,
+        createElement(
+          'span',
+          null,
+          'Greeting: '
+        ),
+        createElement('input', { type: 'text', value: state.greeting, onChange: changeGreeting })
+      ),
+      createElement(
+        'button',
+        { onClick: handleClick },
+        'Change'
+      )
+    );
+  } else {
+    return createElement(
+      'div',
+      null,
+      createElement(
+        'button',
+        { onClick: handleClick },
+        'Change Greeting'
+      )
+    );
+  }
+};
+
+var names = ['World', 'Everybody', 'Bro'];
+
+var greetings = ['Hi', 'Hello', 'Yo'];
+
+var rnd = function rnd(n) {
+  return ~~(Math.random() * n);
+};
+var rndItem = function rndItem(arr) {
+  return arr[rnd(arr.length)];
+};
+
 var style = {
-  height: 100,
   width: '50%',
-  opacity: 0.3,
   zIndex: 12,
-  boxShadow: '0 0 2px 1px red'
+  margin: '50px auto',
+  padding: 10,
+  color: '#fff',
+  borderRadius: 5,
+  fontFamily: 'sans-serif',
+  boxShadow: '0 2px 4px 0 #000'
+};
+
+var setState = function setState(newState) {
+  Object.assign(state, newState);
+  render(createElement(App, null), document.getElementById('app'));
+};
+
+var state = {
+  counter: 0,
+  name: rndItem(names),
+  greeting: rndItem(greetings),
+  background: '#' + rnd(9) + rnd(9) + rnd(9) + rnd(9) + rnd(9) + rnd(9)
+};
+
+var changeGreeting = function changeGreeting(e) {
+  console.log('greet');
+  setState({
+    greeting: e.target.value
+  });
+};
+
+var changeBackground = function changeBackground(e) {
+  e.preventDefault();
+  setState({
+    background: '#' + rnd(9) + rnd(9) + rnd(9) + rnd(9) + rnd(9) + rnd(9)
+  });
+};
+
+var changeName = function changeName(e) {
+  console.log('name');
+  setState({
+    name: e.target.value
+  });
+};
+
+var handleClick = function handleClick(e) {
+  console.log('count');
+  e.preventDefault();
+  setState({
+    counter: ++state.counter
+  });
 };
 
 var Hello = function Hello(props) {
+  var classes = [props.className, 'hello-world'].join(' ');
+  var itemStyle = Object.assign({ background: state.background }, style);
   return createElement(
     'div',
-    { className: 'hello-world', style: style },
+    { className: classes,
+      style: itemStyle,
+      dataFoo: 'fooboo' },
     createElement(
-      'span',
-      { className: 'hello' },
-      props.greeting
+      'h1',
+      null,
+      createElement(
+        'span',
+        { className: 'hello',
+          dataSomething: 'something',
+          dataSomethingElse: 'something else',
+          dataFooBarBaz: 'booboobaafoo' },
+        props.greeting,
+        ' '
+      ),
+      createElement(
+        'span',
+        { className: _hello2.default.world },
+        props.name
+      )
     ),
-    ' ',
     createElement(
-      'span',
-      { className: _hello2.default.world },
-      props.name
-    )
+      'p',
+      null,
+      state.counter
+    ),
+    toggle(state.counter),
+    createElement('br', null),
+    createElement(
+      'label',
+      null,
+      createElement(
+        'span',
+        null,
+        'Name: '
+      ),
+      createElement('input', { type: 'text', value: state.name, onInput: changeName })
+    ),
+    createElement(
+      'p',
+      null,
+      createElement(
+        'button',
+        { onClick: changeBackground },
+        'Change Background'
+      )
+    ),
+    createElement('br', null)
   );
 };
 
-var High = function () {
-  function High(props) {
-    _classCallCheck(this, High);
-
-    this.props = props;
+var App = function () {
+  function App(props) {
+    _classCallCheck(this, App);
   }
 
-  _createClass(High, [{
+  _createClass(App, [{
     key: 'render',
     value: function render() {
-      return createElement(Hello, { greeting: 'High', name: 'World' });
+      var classes = ['counter' + state.counter, 'High-world'].join(' ');
+      return createElement(Hello, { greeting: state.greeting, name: state.name, className: classes });
     }
   }]);
 
-  return High;
+  return App;
 }();
 
-render(createElement(High, { name: 'World' }), document.body);
+render(createElement(App, null), document.getElementById('app'));
 

@@ -3,6 +3,7 @@ const Log = require('log')
 const browserify = require('browserify')
 const babelify = require('babelify')
 const errorify = require('errorify')
+const uglifyify = require('uglifyify')
 const cssmodulesify = require('css-modulesify')
 
 const log = new Log('info')
@@ -19,7 +20,8 @@ files.forEach(file => {
   const b = browserify({
     entries: [inFile],
     plugin: [errorify]
-  })
+  }).transform({global: true},'uglifyify')
+
   b.plugin(cssmodulesify, {
     rootDir: __dirname,
     output: `${outFile}.css`
