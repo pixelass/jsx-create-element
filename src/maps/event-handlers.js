@@ -10,7 +10,6 @@ export default {
   onWheel: 'mousewheel',
   onMouseDown: 'mousedown',
   onMouseUp: 'mouseup',
-  onMouseDown: 'mousedown',
   onMouseMove: 'mousemove',
   onMouseEnter: 'mouseenter',
   onMouseOver: 'mouseover',

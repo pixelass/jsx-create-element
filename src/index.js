@@ -17,23 +17,21 @@ const render = (content, target) => {
 /**
  * create an element and assign attributes and handlers
  * also appends children
- * @param  {String} tagName - defines which tagType to render
+ * @param  {String} TagName - defines which tagType to render
  * @param  {Object} [props] - a list of properties containing attributes and eventlisteners
  * @param  {...[DOMNode]} children - a collection of children to append
  * @return {DOMNode} returns an HTML element
  */
-const createElement = (tagName, properties = {}, ...children) => {
+const createElement = (TagName, properties = {}, ...children) => {
   // make sure props is an object
   const props = properties || {}
-  const type = typeof tagName
+  const type = typeof TagName
   const object = type === 'object'
   const fn = type === 'function'
-  const string = type === 'string'
-  const number = type === 'number'
-  const struct = fn && 'constructor' in tagName
+  const struct = fn && 'constructor' in TagName
 
   if (struct) {
-    const component = new tagName(props)
+    const component = new TagName(props)
     if ('render' in component) {
       return component.render()
     } else {
@@ -42,15 +40,15 @@ const createElement = (tagName, properties = {}, ...children) => {
   }
 
   if (fn) {
-    return tagName(props)
+    return TagName(props)
   }
 
-  if (!(tagName in HTML_TAGS)) {
-    throw new Error(`${tagName} is not a valid tagName`)
+  if (!(TagName in HTML_TAGS)) {
+    throw new Error(`${TagName} is not a valid tagName`)
   }
 
   // get the tag.name
-  const tag = HTML_TAGS[tagName]
+  const tag = HTML_TAGS[TagName]
   // tag could be an object
   const tagType = object ? tag.name : tag
 
