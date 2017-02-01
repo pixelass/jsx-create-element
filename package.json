@@ -5,13 +5,11 @@
   "main": "index.js",
   "scripts": {
     "babel": "babel ./src --out-dir ./lib",
-    "babel-test": "babel ./test/in/test.jsx > ./test/out/result.js",
-    "build-test": "node test/build",
     "create-index": "echo 'module.exports = require(\"./lib\").default;' > index.js",
-    "pretest": "node build; npm run build-test; npm run babel-test",
+    "build": "npm run babel; node scripts/build",
     "prerelease": "npm test",
     "release": "standard-version --no-verify",
-    "test": "node test"
+    "test": "eslint src"
   },
   "author": "Gregor Adams <greg@pixelass.com> (http://pixelass.com)",
   "keywords": [
@@ -29,18 +27,17 @@
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "colors": "^1.1.2",
-    "css-modulesify": "^0.25.1",
     "cz-conventional-changelog": "^1.1.7",
     "errorify": "^0.3.1",
-    "git-scripts": "^0.2.1",
+    "eslint": "^3.14.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-standard": "^2.0.1",
     "log": "^1.4.0",
     "standard-version": "^2.4.0",
     "watchify": "^3.7.0"
-  },
-  "git": {
-    "scripts": {
-      "pre-commit": "npm test"
-    }
   },
   "config": {
     "commitizen": {

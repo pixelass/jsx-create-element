@@ -3,9 +3,8 @@ const Log = require('log')
 const browserify = require('browserify')
 const babelify = require('babelify')
 const errorify = require('errorify')
-const cssmodulesify = require('css-modulesify')
 
-const log = new Log('info')
+const log = new Log()
 
 const fileMap = {
   'dist.js': 'jsx-create-element'
@@ -19,10 +18,6 @@ files.forEach(file => {
   const b = browserify({
     entries: [inFile],
     plugin: [errorify]
-  })
-  b.plugin(cssmodulesify, {
-    rootDir: __dirname,
-    output: `${outFile}.css`
   })
   function bundle() {
     b.bundle().pipe(fs.createWriteStream(`${outFile}.js`))

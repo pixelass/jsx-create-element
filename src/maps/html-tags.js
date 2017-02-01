@@ -50,7 +50,7 @@ export default {
       formValidate: 'formvalidate',
       formTarget: 'formtarget',
       type: 'type',
-      value: 'value',
+      value: 'value'
     }
   },
   canvas: {
@@ -91,7 +91,7 @@ export default {
       height: 'height',
       src: 'src',
       type: 'type',
-      width: 'width',
+      width: 'width'
     }
   },
   fieldset: {
@@ -115,7 +115,7 @@ export default {
       method: 'method',
       name: 'name',
       noValidate: 'novalidate',
-      target: 'target',
+      target: 'target'
     }
   },
   h1: 'h1',
@@ -159,7 +159,7 @@ export default {
       step: 'step',
       type: 'type',
       value: 'value',
-      width: 'width',
+      width: 'width'
     }
   },
   img: {
@@ -175,7 +175,7 @@ export default {
       src: 'src',
       srcset: 'srcset',
       width: 'width',
-      useMap: 'usemap',
+      useMap: 'usemap'
     }
   },
   ins: 'ins',
@@ -207,7 +207,7 @@ export default {
       min: 'min',
       max: 'max',
       optimum: 'optimum',
-      value: 'value',
+      value: 'value'
     }
   },
   nav: 'nav',
@@ -221,7 +221,7 @@ export default {
       type: 'type',
       typeMustmatch: 'typemustmatch',
       useMap: 'usemap',
-      width: 'width',
+      width: 'width'
     }
   },
   optgroup: {
@@ -261,7 +261,7 @@ export default {
     name: 'progress',
     attributes: {
       max: 'max',
-      value: 'value',
+      value: 'value'
     }
   },
   rp: 'rp',
@@ -280,7 +280,7 @@ export default {
       multiple: 'multiple',
       name: 'name',
       required: 'required',
-      size: 'size',
+      size: 'size'
     }
   },
   small: 'small',
@@ -291,7 +291,7 @@ export default {
       sizes: 'sizes',
       src: 'src',
       srcset: 'srcset',
-      type: 'type',
+      type: 'type'
     }
   },
   span: 'span',
@@ -319,7 +319,7 @@ export default {
       required: 'required',
       rows: 'rows',
       selectionDirection: 'selectionDirection',
-      wrap: 'wrap',
+      wrap: 'wrap'
     }
   },
   td: 'td',
@@ -355,6 +355,5 @@ export default {
       src: 'src',
       width: 'width'
     }
-  },
-
+  }
 }

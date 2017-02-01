@@ -17,5 +17,5 @@ export default {
   spellCheck: 'spellcheck',
   tabIndex: 'tabindex',
   title: 'title',
-  translate: 'translate',
+  translate: 'translate'
 }
