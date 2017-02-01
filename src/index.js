@@ -81,6 +81,12 @@ const createElement = (tagName, properties = {}, ...children) => {
     })
   }
 
+  // if props contains a ref
+  // assign reference to element
+  if ('ref' in props && typeof props.ref === 'function') {
+    props.ref(el)
+  }
+
   // loop through children and append.
   children.forEach(child => {
     const childNode = getNode(child)

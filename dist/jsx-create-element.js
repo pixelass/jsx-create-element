@@ -194,6 +194,12 @@ var createElement = function createElement(tagName) {
     })();
   }
 
+  // if props contains a ref
+  // assign reference to element
+  if ('ref' in props && typeof props.ref === 'function') {
+    props.ref(el);
+  }
+
   // loop through children and append.
   children.forEach(function (child) {
     var childNode = (0, _node2.default)(child);

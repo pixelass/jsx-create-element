@@ -13,8 +13,8 @@ const fileMap = {
 const files = Object.keys(fileMap)
 
 files.forEach(file => {
-  const inFile = `src/${file}`
-  const outFile = `dist/${fileMap[file]}`
+  const inFile = `./src/${file}`
+  const outFile = `./dist/${fileMap[file]}`
   const b = browserify({
     entries: [inFile],
     plugin: [errorify]
