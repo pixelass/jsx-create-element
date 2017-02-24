@@ -26,7 +26,7 @@ const createElement = (TagName, properties = {}, ...children) => {
   // make sure props is an object
   const props = properties || {}
   const type = typeof TagName
-  const object = type === 'object'
+  const object = HTML_TAGS[TagName] === 'object'
   const fn = type === 'function'
   const struct = fn && 'constructor' in TagName
 
@@ -87,8 +87,15 @@ const createElement = (TagName, properties = {}, ...children) => {
 
   // loop through children and append.
   children.forEach(child => {
-    const childNode = getNode(child)
-    el.appendChild(childNode)
+    if (typeof child === object && child.length) {
+      child.forEach(item => {
+        const childNode = getNode(item)
+        el.appendChild(childNode)
+      })
+    } else {
+      const childNode = getNode(child)
+      el.appendChild(childNode)
+    }
   })
 
   return el
